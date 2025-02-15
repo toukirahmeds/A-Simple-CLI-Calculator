@@ -5,7 +5,7 @@ const commandLineExpr = process.argv[2];
 
 const main = () => {
     if (commandLineExpr) {
-        calculateFromCmdLineArgs();
+        calculateFromCmdLineArgs(commandLineExpr);
     } else {
         calculateFromConsoleInput();
     }
