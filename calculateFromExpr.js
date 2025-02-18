@@ -57,7 +57,7 @@ const getIsSymmetric = (exprArr) => {
  * 
  * @param {Array<string>} exprArr 
  */
-const getIsValidArithmeticExpr = (exprArr) => {
+const getIsValidArithmeticExpr = exprArr => {
     let operator, opIndex;
 
     for (let i = 0; i < OPERATORS.length; i++) {
@@ -82,11 +82,18 @@ const getIsValidArithmeticExpr = (exprArr) => {
 };
 
 /**
+ * Check if there's any empty parentheses.
+ * 
+ * @param {Array<string>} exprArr 
+ */
+const hasEmptyParentheses = exprArr => exprArr.join("").indexOf("()") >= 0;
+
+/**
  * Check if the expression is valid.
  * 
  * @param {Array<string>} exprArr 
  */
-const checkIsValid = (exprArr) => {
+const checkIsValid = exprArr => {
     if (!getHasAcceptableChars(exprArr)) {
         console.error("Unacceptable characters.");
         return false;
@@ -99,6 +106,11 @@ const checkIsValid = (exprArr) => {
 
     if (!getIsValidArithmeticExpr(exprArr)) {
         console.error("Not a valid arithmetic expression.");
+        return false;
+    }
+
+    if (hasEmptyParentheses(exprArr)) {
+        console.error("Has empty parentheses.");
         return false;
     }
 
