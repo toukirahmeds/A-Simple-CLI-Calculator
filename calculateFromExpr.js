@@ -119,6 +119,57 @@ const checkIsValid = exprArr => {
     return isValid;
 };
 
+/**
+ * Get the unnecessary extra parentheses merged.
+ * 
+ * @param {Array<string>} exprArr 
+ */
+const getMergedParentheses = exprArr => {
+    const openPIndArr = [], closePIndArr = [];
+
+    exprArr.forEach((item, index) => {
+        if (item === "(") {
+            openPIndArr.push(index);
+        } else if (item === ")") {
+            closePIndArr.push(index);
+        }
+    });
+
+    console.log(openPIndArr, closePIndArr);
+
+    let startOPInd = 0,
+        startCPInd = 0,
+        count = 1,
+        currentInd = 1;
+    const deletionIndArr = [];
+
+    while (currentInd < openPIndArr.length) {
+        if (
+            (openPIndArr[currentInd] === openPIndArr[startOPInd] + count) &&
+            (closePIndArr[currentInd] === closePIndArr[startCPInd] + count)
+        ) {
+            deletionIndArr.push(openPIndArr[currentInd]);
+            deletionIndArr.push(closePIndArr[currentInd]);
+        }
+
+        if (
+            (openPIndArr[currentInd] !== openPIndArr[startOPInd] + count) &&
+            (closePIndArr[currentInd] !== closePIndArr[startCPInd] + count)
+        ) {
+            startOPInd = currentInd;
+            startCPInd = currentInd;
+            count = 0;
+        }
+
+        count++;
+        currentInd = startOPInd + count;
+    }
+
+    return exprArr.map(
+        (value, index) => deletionIndArr.includes(index) ? null: value
+    ).filter(value => value);
+}
+
 
 /**
  * Calculates the result from the provided expression.
@@ -132,6 +183,9 @@ const calculateFromExpr = (expr) => {
         console.error("Invalid expression.");
         process.exit();
     }
+
+    const mergedPArr = getMergedParentheses(trimmedArr);
+    console.log(mergedPArr);
 
     // calculateUsingPemdas(parsedArr);
 };
