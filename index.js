@@ -3,13 +3,13 @@ const calculateFromConsoleInput = require("./calculateFromConsoleInput");
 
 const commandLineExpr = process.argv[2];
 
-const main = () => {
+const main = async () => {
     let result;
 
     if (commandLineExpr) {
         result = calculateFromCmdLineArgs(commandLineExpr);
     } else {
-        calculateFromConsoleInput();
+        result = await calculateFromConsoleInput();
     }
 
     console.log(`Output: ${result}`);

@@ -5,8 +5,7 @@ const calculateFromExpr = require("./calculateFromExpr");
  * 
  * @param {string} commandLineExpr 
  */
-const calculateFromCmdLineArgs = (commandLineExpr) => {
-    return calculateFromExpr(commandLineExpr);
-};
+const calculateFromCmdLineArgs =
+    commandLineExpr => calculateFromExpr(commandLineExpr);
 
 module.exports = calculateFromCmdLineArgs;
