@@ -170,6 +170,35 @@ const getMergedParentheses = exprArr => {
     ).filter(value => value);
 }
 
+/**
+ * Get the numbers merged.
+ * 
+ * @param {Array<string>} exprArr 
+ */
+const getMergedParsedNumArr = exprArr => {
+    const mergedNumArr = [];
+    let currentNum = "";
+
+    exprArr.forEach(value => {
+        if (!isNaN(value)) {
+            currentNum += value;
+        } else {
+            if (currentNum) {
+                mergedNumArr.push(parseFloat(currentNum));
+                currentNum = "";
+            }
+
+            mergedNumArr.push(value);
+        }
+    });
+
+    if (currentNum) {
+        mergedNumArr.push(parseFloat(currentNum));
+    }
+
+    return mergedNumArr;
+};
+
 
 /**
  * Calculates the result from the provided expression.
@@ -185,7 +214,8 @@ const calculateFromExpr = (expr) => {
     }
 
     const mergedPArr = getMergedParentheses(trimmedArr);
-    console.log(mergedPArr);
+    const mergedParsedNumArr = getMergedParsedNumArr(mergedPArr);
+    console.log(mergedParsedNumArr);
 
     // calculateUsingPemdas(parsedArr);
 };
