@@ -1,5 +1,5 @@
 const ACCEPTED_CHARS = "0123456789+-*/()";
-const OPERATORS = ["*", "/", "+", "-"];
+const PEMDASPriorityOp = ["*", "/", "+", "-"];
 
 /**
  * Check if all the characters are acceptable.
@@ -50,8 +50,8 @@ const getIsSymmetric = (exprArr) => {
 const getIsValidArithmeticExpr = exprArr => {
     let operator, opIndex;
 
-    for (let i = 0; i < OPERATORS.length; i++) {
-        operator = OPERATORS[i];
+    for (let i = 0; i < PEMDASPriorityOp.length; i++) {
+        operator = PEMDASPriorityOp[i];
         opIndex = exprArr.indexOf(operator);
         
         while (opIndex >= 0 && opIndex < exprArr.length) {
@@ -125,8 +125,6 @@ const getMergedParentheses = exprArr => {
         }
     });
 
-    console.log(openPIndArr, closePIndArr);
-
     let startOPInd = 0,
         startCPInd = 0,
         count = 1,
@@ -189,8 +187,33 @@ const getMergedParsedNumArr = exprArr => {
     return mergedNumArr;
 };
 
+const operate = (arr, opInd1, operatorInd, opInd2) => {
+    let result;
+
+    switch (arr[operatorInd]) {
+        case "*":
+        case "x":
+            result = arr[opInd1] * arr[opInd2];
+            break;
+        case "/":
+            result = arr[opInd1] / arr[opInd2];
+            break;
+        case "+":
+            result = arr[opInd1] + arr[opInd2];
+            break;
+        case "-":
+            result = arr[opInd1] - arr[opInd2];
+            break;
+        default:
+    }
+
+    return result;
+};
+
 module.exports = {
+    PEMDASPriorityOp,
     checkIsValid,
     getMergedParentheses,
-    getMergedParsedNumArr
+    getMergedParsedNumArr,
+    operate
 };
