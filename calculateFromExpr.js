@@ -1,4 +1,5 @@
 const ACCEPTED_CHARS = "0123456789+-*/()";
+const OPERATORS = ["*", "/", "+", "-"];
 
 /**
  * Calculates using PEMDAS rule.
@@ -52,6 +53,35 @@ const getIsSymmetric = (exprArr) => {
 };
 
 /**
+ * Checks if its a valid arithmetic expression.
+ * 
+ * @param {Array<string>} exprArr 
+ */
+const getIsValidArithmeticExpr = (exprArr) => {
+    let operator, opIndex;
+
+    for (let i = 0; i < OPERATORS.length; i++) {
+        operator = OPERATORS[i];
+        opIndex = exprArr.indexOf(operator);
+        
+        while (opIndex >= 0 && opIndex < exprArr.length) {
+            if (
+                opIndex === 0 ||
+                opIndex === exprArr.length - 1 ||
+                exprArr[opIndex - 1] === "(" ||
+                exprArr[opIndex + 1] === ")"
+            ) {
+                return false;
+            }
+
+            opIndex = exprArr.indexOf(operator, opIndex + 1);
+        }
+    }
+
+    return true;
+};
+
+/**
  * Check if the expression is valid.
  * 
  * @param {Array<string>} exprArr 
@@ -64,6 +94,11 @@ const checkIsValid = (exprArr) => {
 
     if (!getIsSymmetric(exprArr)) {
         console.error("Expression is not symmetric.");
+        return false;
+    }
+
+    if (!getIsValidArithmeticExpr(exprArr)) {
+        console.error("Not a valid arithmetic expression.");
         return false;
     }
 
