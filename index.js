@@ -4,11 +4,15 @@ const calculateFromConsoleInput = require("./calculateFromConsoleInput");
 const commandLineExpr = process.argv[2];
 
 const main = () => {
+    let result;
+
     if (commandLineExpr) {
-        calculateFromCmdLineArgs(commandLineExpr);
+        result = calculateFromCmdLineArgs(commandLineExpr);
     } else {
         calculateFromConsoleInput();
     }
+
+    console.log(`Output: ${result}`);
 };
 
 main();
