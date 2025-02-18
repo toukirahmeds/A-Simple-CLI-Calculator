@@ -94,27 +94,29 @@ const hasEmptyParentheses = exprArr => exprArr.join("").indexOf("()") >= 0;
  * @param {Array<string>} exprArr 
  */
 const checkIsValid = exprArr => {
+    let isValid = true;
+
     if (!getHasAcceptableChars(exprArr)) {
         console.error("Unacceptable characters.");
-        return false;
+        isValid = false;
     }
 
     if (!getIsSymmetric(exprArr)) {
         console.error("Expression is not symmetric.");
-        return false;
+        isValid = false;
     }
 
     if (!getIsValidArithmeticExpr(exprArr)) {
         console.error("Not a valid arithmetic expression.");
-        return false;
+        isValid = false;
     }
 
     if (hasEmptyParentheses(exprArr)) {
         console.error("Has empty parentheses.");
-        return false;
+        isValid = false;
     }
 
-    return true;
+    return isValid;
 };
 
 
