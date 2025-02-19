@@ -57,8 +57,27 @@ const processCalculation = parsedArr => {
         const innerExprArr = parsedArr.slice(oPInd + 1, cPInd);
         const result = processCalculation(innerExprArr);
 
+        const addElemsArr = [result];
+        
         parsedArr.splice(oPInd, cPInd - oPInd + 1);
-        parsedArr.splice(oPInd, 0, result);
+
+        if (oPInd > 0) {
+            if (
+                !PEMDASPriorityOp.includes(parsedArr[oPInd - 1]) &&
+                !isNaN(parsedArr[oPInd - 1])
+            ) {
+                addElemsArr.unshift("*");
+            }
+
+            if (
+                !PEMDASPriorityOp.includes(parsedArr[oPInd]) &&
+                !isNaN(parsedArr[oPInd])
+            ) {
+                addElemsArr.push("*");
+            }
+        }
+
+        parsedArr.splice(oPInd, 0, ...addElemsArr);
 
         return processCalculation(parsedArr);
     }
