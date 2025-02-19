@@ -85,9 +85,12 @@ const hasEmptyParentheses = exprArr => exprArr.join("").indexOf("()") >= 0;
  */
 const checkIsValid = exprArr => {
     let isValid = true;
+    
+    console.log("\n");
 
     if (!getHasAcceptableChars(exprArr)) {
         console.error("Unacceptable characters.");
+        console.error(`Only supports characters in '${ACCEPTED_CHARS}'`);
         isValid = false;
     }
 
