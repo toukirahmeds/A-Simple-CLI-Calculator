@@ -10,3 +10,4 @@ A basic calculator for arithmetic operations.
 - In the command-line terminal, go to the root of the project directory.
 - For command-line input, run `npm start -- '[arithmetic expression]'`. E.g. `npm start -- '(2*4)*2/2'`.
 - For console input, run `npm start`. Then input the arithmetic expression and press `Enter`.
+- For help manual, run `npm start -- --help`.
