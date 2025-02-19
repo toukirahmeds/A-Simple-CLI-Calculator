@@ -27,7 +27,7 @@ const main = async () => {
         result = await calculateFromConsoleInput();
     }
 
-    console.log(`Output: ${result}`);
+    console.log(`Value = ${result}`);
 };
 
 main();
