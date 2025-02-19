@@ -62,7 +62,9 @@ const getIsValidArithmeticExpr = exprArr => {
                 opIndex === 0 ||
                 opIndex === exprArr.length - 1 ||
                 exprArr[opIndex - 1] === "(" ||
-                exprArr[opIndex + 1] === ")"
+                exprArr[opIndex + 1] === ")" ||
+                PEMDASPriorityOp.includes(exprArr[opIndex - 1]) ||
+                PEMDASPriorityOp.includes(exprArr[opIndex + 1])
             ) {
                 return false;
             }
