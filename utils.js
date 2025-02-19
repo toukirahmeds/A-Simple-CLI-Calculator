@@ -218,6 +218,18 @@ const operate = (arr, opInd1, operatorInd, opInd2) => {
     return result;
 };
 
+const printManualAndExit = () => {
+    console.log(`
+        Calculates value of arithmetic expressions.
+
+        Usage: node index.js '[arithmetic expression]'
+        Example: node index.js '(2*4)*2/2'
+        
+        Accepted Characters: 0123456789+-*/()
+        Must always be a valid arithmetic expression.
+    `)
+};
+
 module.exports = {
     PEMDASPriorityOp,
     checkIsValid,
