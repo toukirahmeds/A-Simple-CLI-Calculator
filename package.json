@@ -1,5 +1,5 @@
 {
-  "name": "simple-calculator",
+  "name": "a-simple-calculator",
   "version": "1.0.0",
   "description": "A basic calculator for arithmetic operations.",
   "main": "index.js",
