@@ -3,7 +3,8 @@ const {
     checkIsValid,
     getMergedParentheses,
     getMergedParsedNumArr,
-    operate
+    operate,
+    printManualAndExit
 } = require("./utils");
 
 const getHighestPriorityOperandInd = parsedArr => {
@@ -74,8 +75,7 @@ const calculateFromExpr = (expr) => {
     const trimmedArr = expr.split("").filter(elem => elem.trim());
 
     if (!checkIsValid(trimmedArr)) {
-        console.error("Invalid Expression.");
-        process.exit();
+        printManualAndExit();
     }
 
     const mergedPArr = getMergedParentheses(trimmedArr);

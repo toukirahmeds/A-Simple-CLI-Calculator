@@ -100,7 +100,7 @@ const checkIsValid = exprArr => {
     }
 
     if (!getIsValidArithmeticExpr(exprArr)) {
-        errorMesage += "Not a valid arithmetic expression.";
+        errorMessage += "Not a valid arithmetic expression.";
         isValid = false;
     }
 
@@ -110,8 +110,7 @@ const checkIsValid = exprArr => {
     }
 
     if (errorMessage) {
-        console.log("\n");
-        console.error(errorMessage);
+        console.error("\nInvalid Expression: ", errorMessage);
     }
 
     return isValid;
@@ -228,6 +227,8 @@ const printManualAndExit = () => {
         Accepted Characters: 0123456789+-*/()
         Must always be a valid arithmetic expression.
     `)
+
+    process.exit();
 };
 
 module.exports = {
@@ -235,5 +236,6 @@ module.exports = {
     checkIsValid,
     getMergedParentheses,
     getMergedParsedNumArr,
-    operate
+    operate,
+    printManualAndExit
 };
