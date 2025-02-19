@@ -7,7 +7,13 @@ const {
     printManualAndExit
 } = require("./utils");
 
-const getHighestPriorityOperandInd = parsedArr => {
+/**
+ * Get the current highest priority operator's index.
+ * 
+ * @param {Array<string>} parsedArr 
+ * @returns {number}
+ */
+const getHighestPriorityOperatorInd = parsedArr => {
     let ind;
 
     for (let i = 0; i < PEMDASPriorityOp.length; i++) {
@@ -17,13 +23,22 @@ const getHighestPriorityOperandInd = parsedArr => {
             return ind;
         }
     }
+
+    return -1;
 };
 
-const evaluateArr = parsedArr => {
+/**
+ * Evaluate the operation between two operands with
+ * highest priority operator.
+ * 
+ * @param {Array<string|number>} parsedArr 
+ * @returns {number}
+ */
+const evaluateExprArr = parsedArr => {
     let recurResult, hPOPInd;
 
     while (parsedArr.length !== 1) {
-        hPOPInd = getHighestPriorityOperandInd(parsedArr);
+        hPOPInd = getHighestPriorityOperatorInd(parsedArr);
 
         recurResult = operate(
             parsedArr,
@@ -39,6 +54,12 @@ const evaluateArr = parsedArr => {
     return parsedArr[0];
 };
 
+/**
+ * Calculates the value of the arithmetic expression.
+ * 
+ * @param {Array<string|number>} parsedArr 
+ * @returns {Array<string|number> | number}
+ */
 const processCalculation = parsedArr => {
     let oPInd = -1, cPInd = -1;
 
@@ -82,7 +103,7 @@ const processCalculation = parsedArr => {
         return processCalculation(parsedArr);
     }
 
-    return evaluateArr(parsedArr);
+    return evaluateExprArr(parsedArr);
 };
 
 /**

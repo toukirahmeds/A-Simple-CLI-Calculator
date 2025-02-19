@@ -2,6 +2,12 @@ const readline = require("readline").promises;
 
 const calculateFromExpr = require("./calculateFromExpr");
 
+/**
+ * Calculates the value of arithmetic expression
+ * from console input.
+ * 
+ * @returns {number}
+ */
 const calculateFromConsoleInput = async () => {
     const rlInterface = readline.createInterface({
         input: process.stdin,

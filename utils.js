@@ -4,7 +4,8 @@ const PEMDASPriorityOp = ["*", "/", "+", "-"];
 /**
  * Check if all the characters are acceptable.
  * 
- * @param {Array<string>} exprArr 
+ * @param {Array<string>} exprArr
+ * @returns {boolean}
  */
 const getHasAcceptableChars = (exprArr) => exprArr.every(
     elem => ACCEPTED_CHARS.includes(elem)
@@ -14,6 +15,7 @@ const getHasAcceptableChars = (exprArr) => exprArr.every(
  * Check if the parentheses are in symmetric.
  * 
  * @param {Array<string>} exprArr 
+ * @returns {boolean}
  */
 const getIsSymmetric = (exprArr) => {
     const stack = [];
@@ -45,7 +47,8 @@ const getIsSymmetric = (exprArr) => {
 /**
  * Checks if its a valid arithmetic expression.
  * 
- * @param {Array<string>} exprArr 
+ * @param {Array<string>} exprArr
+ * @returns {boolean}
  */
 const getIsValidArithmeticExpr = exprArr => {
     let operator, opIndex;
@@ -74,14 +77,16 @@ const getIsValidArithmeticExpr = exprArr => {
 /**
  * Check if there's any empty parentheses.
  * 
- * @param {Array<string>} exprArr 
+ * @param {Array<string>} exprArr
+ * @returns {boolean}
  */
 const hasEmptyParentheses = exprArr => exprArr.join("").indexOf("()") >= 0;
 
 /**
  * Check if the expression is valid.
  * 
- * @param {Array<string>} exprArr 
+ * @param {Array<string>} exprArr
+ * @returns {boolean}
  */
 const checkIsValid = exprArr => {
     let isValid = true;
@@ -119,7 +124,8 @@ const checkIsValid = exprArr => {
 /**
  * Get the unnecessary extra parentheses merged.
  * 
- * @param {Array<string>} exprArr 
+ * @param {Array<string>} exprArr
+ * @returns {Array<string>}
  */
 const getMergedParentheses = exprArr => {
     const openPIndArr = [], closePIndArr = [];
@@ -166,9 +172,10 @@ const getMergedParentheses = exprArr => {
 }
 
 /**
- * Get the numbers merged.
+ * Get the numbers merged and parsed to floating numbers.
  * 
- * @param {Array<string>} exprArr 
+ * @param {Array<string>} exprArr
+ * @returns {Array<string|number>}
  */
 const getMergedParsedNumArr = exprArr => {
     const mergedNumArr = [];
@@ -194,6 +201,16 @@ const getMergedParsedNumArr = exprArr => {
     return mergedNumArr;
 };
 
+/**
+ * Calculate the value of operation between two operands with
+ * the operator.
+ * 
+ * @param {Array<string|number>} arr 
+ * @param {number} opInd1 
+ * @param {number} operatorInd 
+ * @param {number} opInd2 
+ * @returns {number}
+ */
 const operate = (arr, opInd1, operatorInd, opInd2) => {
     let result;
 
@@ -217,6 +234,9 @@ const operate = (arr, opInd1, operatorInd, opInd2) => {
     return result;
 };
 
+/**
+ * Prints the manual and exit.
+ */
 const printManualAndExit = () => {
     console.log(`
         Calculates value of arithmetic expressions.
