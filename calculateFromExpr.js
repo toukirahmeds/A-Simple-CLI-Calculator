@@ -74,7 +74,7 @@ const calculateFromExpr = (expr) => {
     const trimmedArr = expr.split("").filter(elem => elem.trim());
 
     if (!checkIsValid(trimmedArr)) {
-        console.error("Invalid expression.");
+        console.error("Invalid Expression.");
         process.exit();
     }
 

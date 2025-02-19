@@ -86,27 +86,32 @@ const hasEmptyParentheses = exprArr => exprArr.join("").indexOf("()") >= 0;
 const checkIsValid = exprArr => {
     let isValid = true;
     
-    console.log("\n");
+    let errorMessage = "";
 
     if (!getHasAcceptableChars(exprArr)) {
-        console.error("Unacceptable characters.");
-        console.error(`Only supports characters in '${ACCEPTED_CHARS}'`);
+        errorMessage += "Unacceptable characters.";
+        errorMessage += `\nOnly supports characters in '${ACCEPTED_CHARS}'`;
         isValid = false;
     }
 
     if (!getIsSymmetric(exprArr)) {
-        console.error("Expression is not symmetric.");
+        errorMessage += "Expression is not symmetric.";
         isValid = false;
     }
 
     if (!getIsValidArithmeticExpr(exprArr)) {
-        console.error("Not a valid arithmetic expression.");
+        errorMesage += "Not a valid arithmetic expression.";
         isValid = false;
     }
 
     if (hasEmptyParentheses(exprArr)) {
-        console.error("Has empty parentheses.");
+        errorMessage += "Has empty parentheses.";
         isValid = false;
+    }
+
+    if (errorMessage) {
+        console.log("\n");
+        console.error(errorMessage);
     }
 
     return isValid;
